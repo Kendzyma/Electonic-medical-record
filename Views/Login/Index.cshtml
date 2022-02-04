@@ -1,0 +1,54 @@
+﻿@model Medical.Models.Users
+@*@{
+        ViewData["Title"] = "Index";
+    }*@
+
+
+<section @*id="appointment" class="appointment section-bg*@>
+    <div class="container">
+
+        <div class="section-title mt-5">
+            <h2>Sign in</h2>
+
+        </div>
+
+        <form asp-action="Create" method="post">
+            <div class="row">
+
+                <div class="col-md-12 form-group">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-validation-error" })
+                    <span asp-validation-for="UserName" class="text-danger">  </span>
+
+                </div>
+
+
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-12 form-group mt-3">
+                    @Html.LabelFor(m => m.Password)
+                    <input type="password" name="passsword" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger">  </span>
+
+                </div>
+            </div>
+
+
+            <div class="text-center"><button type="submit" class="btn btn-primary btn mt-3 text-light">Sign in</button></div>
+            <a asp-action="index" asp-controller="Register" class="text-decoration-none">Register</a>
+
+
+
+        </form>
+
+    </div>
+
+</section>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
