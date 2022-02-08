@@ -2,7 +2,7 @@
 
 namespace Medical.Migrations
 {
-    public partial class ewmigrato : Migration
+    public partial class migra : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

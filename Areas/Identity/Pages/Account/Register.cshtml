@@ -1,0 +1,137 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<section id="appointment" >
+    <div class="container">
+
+        <div class="section-title mt-5">
+            <h2>Register</h2>
+
+        </div>
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="All" class="text-danger">   </div>
+            <div class="row">
+
+                <div class="col-md-6 form-group">
+
+                    @Html.LabelFor(m => m.Input.FirstName)
+                    @Html.TextBoxFor(m => m.Input.FirstName, new { @class = "form-control input-validation-error" })
+                    <span asp-validation-for="Input.FirstName" class="text-danger">  </span>
+
+                </div>
+
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(m => m.Input.LastName)
+                    @Html.TextBoxFor(m => m.Input.LastName, new { @class = "form-control" })
+                    <span asp-validation-for="Input.LastName" class="text-danger">  </span>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 form-group mt-3">
+                    @Html.LabelFor(m => m.Input.LicenceNumber)
+                    <input type="number" name="LicenceNumber" asp-for="Input.LicenceNumber" class="form-control" />
+                    <span asp-validation-for="Input.LicenceNumber" class="text-danger">  </span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group mt-3">
+                    @Html.LabelFor(m => m.Input.HospitalName)
+                    @Html.TextBoxFor(m => m.Input.HospitalName, new { @class = "form-control" })
+                    <span asp-validation-for="Input.HospitalName" class="text-danger">  </span>
+
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                    @Html.LabelFor(m => m.Input.PhoneNumber)
+                    <input type="number" name="phonenumber" asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger">  </span>
+
+                </div>
+            </div>
+            <div class="row">
+                @*<div class="col-md-6 form-group mt-3">
+            @Html.LabelFor(m => m.Input.Department)
+            <select name="department" id="department" asp-for="Input.Department" class="form-select">
+                <option value="">Select Department</option>
+                <option value="Medical Department">Medical Department</option>
+                <option value="Nursing department">Nursing department</option>
+                <option value="ehabilitation department">Rehabilitation department</option>
+                <option value="Pharmacy Department">Pharmacy Department</option>
+                <option value="Radiology department">Radiology department</option>
+            </select>
+            <span asp-validation-for="Input.Department" class="text-danger">  </span>
+
+        </div>*@
+                <div class="col-md-6 form-group mt-3 mt-md-3">
+                    @Html.LabelFor(m => m.Input.Email)
+                    @Html.TextBoxFor(m => m.Input.Email, new { @class = "form-control" })
+                    <span asp-validation-for="Input.Email" class="text-danger">  </span>
+
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-3">
+                    <label asp-for="Input.UserId">Username</label>
+                    @Html.TextBoxFor(m => m.Input.UserId, new { @class = "form-control" })
+                    <span asp-validation-for="Input.UserId" class="text-danger">  </span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 mt-3">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 mt-3">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="text-center"><button type="submit" class="btn btn-primary btn mt-3 text-light">Register</button></div>
+        </form>
+        <div class="col-md-6 col-md-offset-2">
+            <section>
+                <h4>Use another service to register.</h4>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>
+    </section>
+
+            @section Scripts {
+                <partial name="_ValidationScriptsPartial" />
+            }
