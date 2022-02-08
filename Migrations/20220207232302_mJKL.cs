@@ -2,13 +2,13 @@
 
 namespace Medical.Migrations
 {
-    public partial class ewmigraton : Migration
+    public partial class mJKL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "status",
-                table: "users",
+                name: "UserID",
+                table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: true);
         }
@@ -16,8 +16,8 @@ namespace Medical.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "status",
-                table: "users");
+                name: "UserID",
+                table: "AspNetUsers");
         }
     }
 }
